@@ -12,13 +12,6 @@
        - mariadb-server
        - MySQL-python
 
-  - name: Create Mysql configuration file
-    template:
-      src: my.cnf.j2
-      dest: /etc/my.cnf
-    notify:
-     - restart mariadb
-
   - name: Start Mysql Service
     service:
       name: mariadb
@@ -33,13 +26,8 @@
   - name: Create Application DB User
     mysql_user:
       name: "{{ dbuser }}"
-      password: "{{ upassword }}"
+      password: "{{ dbpassword }}"
       priv: "*.*:ALL"
       host: "%"
       state: present
-
-  # handler for service restart when needed    
-  - name: restart mariadb
-    service:
-      name: mariadb
-      state: restarted
+      
