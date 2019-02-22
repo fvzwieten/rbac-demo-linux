@@ -2,6 +2,7 @@
 # This playbook will install MySQL (MariaDB) and create db user and give permissions.
 - name: linux_install_db
   hosts: role_dbserver
+  become: yes
 
   tasks:
   - name: Install Mysql package
