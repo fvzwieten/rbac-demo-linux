@@ -2,6 +2,7 @@
 # This playbook will install MySQL (MariaDB) and create db user and give permissions.
 - name: linux_install_db
   hosts: role_dbserver
+
   tasks:
   - name: Install Mysql package
       yum:
@@ -11,30 +12,34 @@
        - mariadb-server
        - MySQL-python
 
-    - name: Create Mysql configuration file
-      template:
-        src: my.cnf.j2
-        dest: /etc/my.cnf
-      notify:
-       - restart mariadb
+  - name: Create Mysql configuration file
+    template:
+      src: my.cnf.j2
+      dest: /etc/my.cnf
+    notify:
+     - restart mariadb
 
-    - name: Start Mysql Service
-      service:
-        name: mariadb
-        state: started
-        enabled: true
+  - name: Start Mysql Service
+    service:
+      name: mariadb
+      state: started
+      enabled: true
 
-    - name: Create Application Database
-      mysql_db:
-        name: "{{ dbname }}"
-        state: present
+  - name: Create Application Database
+    mysql_db:
+      name: "{{ dbname }}"
+      state: present
 
-    - name: Create Application DB User
-      mysql_user:
-        name: "{{ dbuser }}"
-        password: "{{ upassword }}"
-        priv: "*.*:ALL"
-        host: "%"
-    state: present
-    
-    
+  - name: Create Application DB User
+    mysql_user:
+      name: "{{ dbuser }}"
+      password: "{{ upassword }}"
+      priv: "*.*:ALL"
+      host: "%"
+      state: present
+
+  # handler for service restart when needed    
+  - name: restart mariadb
+    service:
+      name: mariadb
+      state: restarted
