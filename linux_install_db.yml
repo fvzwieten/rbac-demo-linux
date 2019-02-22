@@ -5,12 +5,12 @@
 
   tasks:
   - name: Install Mysql package
-      yum:
-        name: "{{ item }}"
-        state: present
-      with_items:
-       - mariadb-server
-       - MySQL-python
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+     - mariadb-server
+     - MySQL-python
 
   - name: Start Mysql Service
     service:
@@ -30,4 +30,3 @@
       priv: "*.*:ALL"
       host: "%"
       state: present
-      
