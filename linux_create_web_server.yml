@@ -1,0 +1,7 @@
+---
+# This playbook will install Apache Web Server with php support
+- name: linux_install_web _server
+  hosts: role_webserver
+  become: yes
+
+tasks:
