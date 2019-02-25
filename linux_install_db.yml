@@ -27,7 +27,7 @@
   - name: Create Application DB User
     mysql_user:
       name: "{{ dbuser }}"
-      password: "{{ dbpassword }}"
+      password: "12345678"
       priv: "*.*:ALL"
       host: "%"
       state: present
