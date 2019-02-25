@@ -29,5 +29,5 @@
       name: "{{ dbuser }}"
       password: "12345678"
       priv: "*.*:ALL"
-      host: "%"
+#      host: "%"
       state: present
