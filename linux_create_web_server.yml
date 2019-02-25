@@ -14,7 +14,7 @@
      - php
      - php-mysql
 
-  - name: reload apache
+  - name: Start Apache Webserver
     service:
       name: httpd
       state: restarted
