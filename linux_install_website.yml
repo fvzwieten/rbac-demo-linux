@@ -1,0 +1,8 @@
+---
+- name: Install website on webserver
+  hosts: role_webserver
+  tasks:
+  - name: check out website from git:
+    git:
+      repo: ssh://git@github.com/fvzwieten/simple_db_app.git
+      dest: /var/www/html/
