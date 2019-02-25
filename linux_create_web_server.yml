@@ -1,7 +1,33 @@
 ---
-# This playbook will install Apache Web Server with php support
+# This playbook will install Apache Web Server with php and mysql support
 - name: linux_install_web _server
   hosts: role_webserver
   become: yes
 
-tasks:
+  tasks:
+  - name: Install apache and php
+    yum:
+      name: "{{ item }}"
+      state: present
+    loop:
+     - httpd
+     - php
+     - php-mysql
+
+  - name: reload apache
+    service:
+      name: httpd
+      state: restarted
+
+  - name: Configure SELinux to allow httpd to connect to remote database
+    seboolean:
+      name: httpd_can_network_connect_db
+      state: true
+      persistent: yes
+
+  - name: Configure host based firewall for access
+    firewalld:
+      permanent: yes
+      service: http
+      state: enabled
+      immediate: yes
