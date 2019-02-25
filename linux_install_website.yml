@@ -1,6 +1,8 @@
 ---
 - name: Install website on webserver
   hosts: role_webserver
+  become: yes
+  
   tasks:
   - name: check out website from git:
     git:
