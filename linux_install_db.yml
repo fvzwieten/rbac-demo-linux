@@ -29,5 +29,13 @@
       name: "{{ dbuser }}"
       password: "12345678"
       priv: "*.*:ALL"
-#      host: "%"
+      host: "%"
       state: present
+      
+      
+  - name: Configure host based firewall for access
+    firewalld:
+      permanent: yes
+      service: mysql
+      state: enabled
+      immediate: yes
