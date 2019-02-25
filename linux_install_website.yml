@@ -2,6 +2,12 @@
 - name: Install website on webserver
   become: yes
 
+  hosts: role_dbserver
+  - name: Create Application Database
+    mysql_db:
+      name: "{{ dbname }}"
+      state: present
+
   hosts: role_webserver
   tasks:
   - name: check out website from git
@@ -9,9 +15,5 @@
       repo: https://github.com/fvzwieten/simple_db_app.git
       dest: /var/www/html/
 
-  hosts: role_dbserver
-  - name: Create Application Database
-    mysql_db:
-      name: "{{ dbname }}"
-      state: present
+  
 
