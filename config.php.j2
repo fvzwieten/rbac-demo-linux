@@ -3,7 +3,7 @@
  * Configuration for database connection
  *
  */
-$host       = "{{ dbip }}";
+$host       = "{{ hostvars['role_dbserver']["dbip"] }}";
 $username   = "{{ dbuser }}";
 $password   = "{{ dbpassword }}";
 $dbname     = "{{ dbname }}";
