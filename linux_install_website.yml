@@ -3,12 +3,13 @@
   become: yes
 
   hosts: role_dbserver
+  tasks:
   - name: Create Application Database
     mysql_db:
       name: "{{ dbname }}"
       state: present
-
-  - set_fact:
+  - name: capture internal ip of database server
+    set_fact:
       dbip: "{{ private_ip }}"
 
   hosts: role_webserver
