@@ -18,6 +18,7 @@
     git:
       repo: https://github.com/fvzwieten/simple_db_app.git
       dest: /var/www/html/
+      force: yes
 
   - name: Create configuration file
     template:
