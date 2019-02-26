@@ -13,7 +13,7 @@
       dbip: "{{ private_ip }}"
 
   hosts: role_webserver
-  tasks:
+  
   - name: check out website from git
     git:
       repo: https://github.com/fvzwieten/simple_db_app.git
