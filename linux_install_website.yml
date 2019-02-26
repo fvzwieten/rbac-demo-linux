@@ -9,8 +9,9 @@
       name: "{{ dbname }}"
       state: present
   - name: capture internal ip of database server
-    set_fact:
-      dbip: "{{ private_ip }}"
+    set_stats:
+      data:
+        dbip: "{{ private_ip }}"
 
 - name: Create website on webserver
   become: yes
