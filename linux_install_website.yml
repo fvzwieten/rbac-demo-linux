@@ -12,7 +12,9 @@
     set_fact:
       dbip: "{{ private_ip }}"
 
-- name: Create website on webserver 
+- name: Create website on webserver
+  become: yes
+  
   hosts: role_webserver
   tasks:
   - name: check out website from git
