@@ -1,3 +1,4 @@
 ---
-dbuser: test
-dbpassword: r3dh4t1!
+dbname: demo
+dbuser: demouser
+dbpassword: demor3dh4t1!

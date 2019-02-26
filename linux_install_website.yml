@@ -8,6 +8,9 @@
       name: "{{ dbname }}"
       state: present
 
+  - set_fact:
+      dbip: "{{ private_ip }}"
+
   hosts: role_webserver
   tasks:
   - name: check out website from git
