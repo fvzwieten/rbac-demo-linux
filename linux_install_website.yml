@@ -4,10 +4,11 @@
 
   hosts: role_dbserver
   tasks:
-  - name: (re)create Database
+  - name: Remove database is it already exists
     mysql_db:
       name: "{{ dbname }}"
       state: absent
+  - name: Create Database
     mysql_db:
       name: "{{ dbname }}"
       state: present
