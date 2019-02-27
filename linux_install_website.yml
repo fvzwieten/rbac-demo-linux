@@ -17,6 +17,13 @@
       name: my_db
       state: import
       target: /tmp/schema.sql
+  - name: Create DB User
+    mysql_user:
+      name: "{{ dbuser }}"
+      password: "{{ dbpassword }}"
+      priv: "*.*:ALL"
+      host: "%"
+      state: present      
 
 - name: Create website on webserver
   become: yes
@@ -25,8 +32,6 @@
   vars:
     dbserver: "{{ groups['role_dbserver'][0] }}"
   tasks:
-  - debug:
-      msg: "IP DB Server: {{ hostvars[dbserver].ansible_default_ipv4.address }}"
   - name: check out website from git
     git:
       repo: https://github.com/fvzwieten/simple_db_app.git
