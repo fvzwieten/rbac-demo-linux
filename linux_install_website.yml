@@ -9,8 +9,8 @@
       name: "{{ dbname }}"
       state: present
   - name: Copy database schema file to DB server
-    copy:
-      src: schema.sql
+    template:
+      src: schema.sql.j2
       dest: /tmp
   - name: Import schema file into database
     mysql_db:
