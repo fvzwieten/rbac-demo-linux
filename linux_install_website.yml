@@ -17,9 +17,10 @@
   become: yes
   
   hosts: role_webserver
+  vars: dbserver: "{{ groups['role_dbserver'][0] }}"
   tasks:
   - debug:
-      msg: "{{ groups['role_dbserver'][0] }}"
+      msg: "IP DB Server: {{ hostvars[dbserver].ansible_default_ipv4.address }}"
   - name: check out website from git
     git:
       repo: https://github.com/fvzwieten/simple_db_app.git
