@@ -17,7 +17,8 @@
   become: yes
   
   hosts: role_webserver
-  vars: dbserver: "{{ groups['role_dbserver'][0] }}"
+  vars:
+    dbserver: "{{ groups['role_dbserver'][0] }}"
   tasks:
   - debug:
       msg: "IP DB Server: {{ hostvars[dbserver].ansible_default_ipv4.address }}"
