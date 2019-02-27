@@ -18,15 +18,6 @@
       name: mariadb
       state: started
       enabled: true
-
-  - name: Create Application DB User
-    mysql_user:
-      name: "{{ dbuser }}"
-      password: "{{ dbpassword }}"
-      priv: "*.*:ALL"
-      host: "%"
-      state: present
-      
       
   - name: Configure host based firewall for access
     firewalld:
