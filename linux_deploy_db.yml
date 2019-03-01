@@ -2,7 +2,7 @@
 - name: create database on database server
   become: yes
   vars_files:
-  
+    https://raw.githubusercontent.com/fvzwieten/simple_db_app/master/database_credentials.yml'
 
   hosts: role_dbserver
   tasks:
