@@ -2,7 +2,7 @@
 - name: create database on database server
   become: yes
   vars_files:
-    database_credentials.yml'
+    database_credentials.yml
 
   hosts: role_dbserver
   tasks:
