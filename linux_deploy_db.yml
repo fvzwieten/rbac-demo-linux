@@ -29,4 +29,4 @@
       password: "{{ dbpassword }}"
       priv: "*.*:ALL"
       host: "%"
-state: present      
+      state: present      
