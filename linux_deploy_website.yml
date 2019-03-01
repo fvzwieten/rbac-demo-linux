@@ -1,19 +1,19 @@
 ---
-name: Create website on webserver
-become: yes
-hosts: role_webserver
-vars_files:
-  database_credentials.yml
-vars:
-  dbserver: "{{ groups['role_dbserver'][0] }}"
-tasks:
-- name: check out website from git
-  git:
-    repo: https://github.com/fvzwieten/simple_db_app.git
-    dest: /var/www/html/
-    force: yes
+- name: Create website on webserver
+  become: yes
+  hosts: role_webserver
+  vars_files:
+    database_credentials.yml
+  vars:
+    dbserver: "{{ groups['role_dbserver'][0] }}"
+  tasks:
+  - name: check out website from git
+    git:
+      repo: https://github.com/fvzwieten/simple_db_app.git
+      dest: /var/www/html/
+      force: yes
 
-- name: Create website configuration file
-  template:
-    src: config.php.j2
-    dest: /var/www/html/config.php
+  - name: Create website configuration file
+    template:
+      src: config.php.j2
+      dest: /var/www/html/config.php
