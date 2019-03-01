@@ -1,10 +1,10 @@
 ---
 - name: create database on database server
   become: yes
+  hosts: role_dbserver:&linux
   vars_files:
     database_credentials.yml
 
-  hosts: role_dbserver
   tasks:
   - name: Remove database is it already exists
     mysql_db:
