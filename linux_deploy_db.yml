@@ -1,6 +1,8 @@
 ---
 - name: create database on database server
   become: yes
+  vars_files:
+  
 
   hosts: role_dbserver
   tasks:
