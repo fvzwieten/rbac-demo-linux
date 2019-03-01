@@ -1,11 +1,12 @@
 ---
 - name: Create website on webserver
+  hosts: role_webserver:&linux
   become: yes
-  hosts: role_webserver
   vars_files:
     database_credentials.yml
   vars:
     dbserver: "{{ groups['role_dbserver'][0] }}"
+
   tasks:
   - name: check out website from git
     git:
