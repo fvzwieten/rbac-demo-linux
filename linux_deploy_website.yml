@@ -1,48 +1,19 @@
 ---
-- name: create database on database server
-  become: yes
+name: Create website on webserver
+become: yes
+hosts: role_webserver
+vars_files:
+  database_credentials.yml
+vars:
+  dbserver: "{{ groups['role_dbserver'][0] }}"
+tasks:
+- name: check out website from git
+  git:
+    repo: https://github.com/fvzwieten/simple_db_app.git
+    dest: /var/www/html/
+    force: yes
 
-  hosts: role_dbserver
-  tasks:
-  - name: Remove database is it already exists
-    mysql_db:
-      name: "{{ dbname }}"
-      state: absent
-  - name: Create Database
-    mysql_db:
-      name: "{{ dbname }}"
-      state: present
-  - name: Copy database schema file to DB server
-    template:
-      src: schema.sql.j2
-      dest: /tmp/schema.sql
-  - name: Import schema file into database
-    mysql_db:
-      name: my_db
-      state: import
-      target: /tmp/schema.sql
-  - name: Create DB User
-    mysql_user:
-      name: "{{ dbuser }}"
-      password: "{{ dbpassword }}"
-      priv: "*.*:ALL"
-      host: "%"
-      state: present      
-
-- name: Create website on webserver
-  become: yes
-  
-  hosts: role_webserver
-  vars:
-    dbserver: "{{ groups['role_dbserver'][0] }}"
-  tasks:
-  - name: check out website from git
-    git:
-      repo: https://github.com/fvzwieten/simple_db_app.git
-      dest: /var/www/html/
-      force: yes
-
-  - name: Create website configuration file
-    template:
-      src: config.php.j2
-      dest: /var/www/html/config.php
+- name: Create website configuration file
+  template:
+    src: config.php.j2
+    dest: /var/www/html/config.php
