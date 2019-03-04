@@ -1,6 +1,6 @@
 ---
 - name: create database on database server
-  hosts: role_dbserver:&linux
+  hosts: dbservers:&linux
   become: yes
   vars_files:
     database_credentials.yml

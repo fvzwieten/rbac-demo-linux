@@ -1,40 +1,12 @@
----
-- name: Deploy and configure a HA Proxy load balancer
-  hosts: lbserver
-  become: yes
-  tasks:
-  - name: Download and install haproxy
-    yum:
-      name: "haproxy"
-      state: present
+# Configure and deploy the load balancer(s).
+- hosts: webservers
+  name: Gather facts from webservers
+  tasks: [ ]
 
-  - name: Enable service haproxy, and not touch the state
-    service:
-      name: haproxy
-      enabled: yes
+- hosts: lbservers
 
-  - name: Configure firewall for access to website (80)
-    firewalld:
-      permanent: yes
-      service: http
-      state: enabled
-      immediate: yes
+  roles:
+  - haproxy
 
-  - name: Configure firewall for access to stats page (8080)
-    firewalld:
-      permanent: yes
-      port: 8080/tcp
-      state: enabled
-      immediate: yes
-
-  - name: Configure the haproxy cnf file with hosts
-    template:
-      src: haproxy.cfg.j2
-      dest: /etc/haproxy/haproxy.cfg
-    notify: restart haproxy
-    
-  - name: restart haproxy
-    service:
-      name: haproxy
-      state: restarted
-      enabled: yes
+  tags:
+  - lb

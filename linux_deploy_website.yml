@@ -1,13 +1,18 @@
 ---
 - name: Create website on webserver
-  hosts: role_webserver:&linux
+  hosts: webservers:&linux
   become: yes
   vars_files:
     database_credentials.yml
   vars:
-    dbserver: "{{ groups['role_dbserver'][0] }}"
+    dbserver: "{{ groups['dbservers'][0] }}"
 
   tasks:
+  - name: Install git
+    yum:
+      name: "git"
+      state: present
+
   - name: check out website from git
     git:
       repo: https://github.com/fvzwieten/simple_db_app.git

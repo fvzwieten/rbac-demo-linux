@@ -1,11 +1,11 @@
 ---
-# This playbook will install MySQL (MariaDB) and create db user and give permissions.
-- name: linux_install_db
-  hosts: role_dbserver:&linux
+# This playbook will install MariaDB (MySQL) 
+- name: linux_deploy_mariadb
+  hosts: dbservers:&linux
   become: yes
 
   tasks:
-  - name: Install Mysql package
+  - name: Install Mariadb Server
     yum:
       name: "{{ item }}"
       state: present
@@ -13,7 +13,7 @@
      - mariadb-server
      - MySQL-python
 
-  - name: Start Mysql Service
+  - name: Start MariaDB Service
     service:
       name: mariadb
       state: started
