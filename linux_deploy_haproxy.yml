@@ -1,6 +1,8 @@
 # Configure and deploy the load balancer(s).
 - hosts: role_webserver
   name: Gather facts from webservers
+  vars_files:
+  - winrm_vars.yml
   tasks: [ ]
 
 - hosts: role_lbserver
