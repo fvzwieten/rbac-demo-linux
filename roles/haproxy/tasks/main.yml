@@ -3,11 +3,8 @@
 
 - name: Download and install haproxy and socat
   yum:
-    name: "{{ item }}"
+    name: "haproxy"
     state: present
-  with_items:
-  - haproxy
-  - socat
 
 - name: Enable haproxy service without changing its state
   service:
