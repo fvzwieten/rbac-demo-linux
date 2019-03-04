@@ -1,0 +1,6 @@
+---
+- name: Deploy an HA Proxy load balancer using a Galaxy Role
+  hosts: lbserver
+  become: yes
+  roles:
+  - { role: geerlingguy.haproxy }
