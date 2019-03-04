@@ -5,7 +5,10 @@
 mode: http
 
 # Port on which HAProxy should listen
-http_port: 80
+listen_port: 80
+
+# Port on the backend-servers
+backend_port: 80
 
 # A name for the proxy daemon, this wil be the suffix in the logs.
 daemonname: myapplb
