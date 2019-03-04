@@ -2,5 +2,37 @@
 - name: Deploy an HA Proxy load balancer using a Galaxy Role
   hosts: lbserver
   become: yes
-  roles:
-  - role: geerlingguy.haproxy
+  tasks:
+  - name: Download and install haproxy and socat
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - haproxy
+    - socat
+
+  - name: Configure firewall for access to website (80)
+    firewalld:
+      permanent: yes
+      service: http
+      state: enabled
+      immediate: yes
+
+  - name: Configure firewall for access to stats page (8080)
+    firewalld:
+      permanent: yes
+      port: 8080/tcp
+      state: enabled
+      immediate: yes
+
+  - name: Configure the haproxy cnf file with hosts
+    template:
+      src: haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+    notify: restart haproxy
+    
+  - name: restart haproxy
+    service:
+      name: haproxy
+      state: restarted
+      enabled: yes
