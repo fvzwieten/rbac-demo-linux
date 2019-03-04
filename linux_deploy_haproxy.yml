@@ -3,4 +3,4 @@
   hosts: lbserver
   become: yes
   roles:
-  - { role: geerlingguy.haproxy }
+  - role: geerlingguy.haproxy
