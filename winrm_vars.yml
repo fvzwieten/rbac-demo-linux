@@ -1,0 +1,5 @@
+---
+# vars needed for a successfull connection setup to windows
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+ansible_winrm_transport: credssp
