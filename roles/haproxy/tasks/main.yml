@@ -1,7 +1,7 @@
 ---
 # This role installs HAProxy and configures it.
 
-- name: Download and install haproxy and socat
+- name: Download and install haproxy
   yum:
     name: "haproxy"
     state: present
