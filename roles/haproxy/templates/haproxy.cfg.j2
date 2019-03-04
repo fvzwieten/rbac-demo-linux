@@ -35,7 +35,7 @@ backend app
     {% endfor %}
     balance     {{ balance }}
     {% for host in groups['webserver'] %}
-        server {{ host }} {{ hostvars[host]['private_ip' }}:{{ httpd_port }}
+        server {{ host }} {{ hostvars[host]['private_ip'] }}:{{ httpd_port }}
     {% endfor %}
     
     
