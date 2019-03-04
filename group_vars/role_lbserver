@@ -13,13 +13,4 @@ daemonname: myapplb
 # Balancing Algorithm. Available options:
 # roundrobin, source, leastconn, source, uri
 # (if persistance is required use, "source")
-balance: roundrobin 
-
-# Ethernet interface on which the load balancer should listen
-# Defaults to the first interface. Change this to:
-#
-#  iface: eth1
-#
-# ...to override.
-#
-iface: '{{ public_ip }}'
+balance: roundrobin
