@@ -31,11 +31,11 @@ defaults
 
 backend app
     {% for host in groups['role_lbserver'] %}
-    	listen {{ daemonname }} 0.0.0.0:{{ listenport }}
+    	listen {{ daemonname }} 0.0.0.0:{{ listen_port }}
     {% endfor %}
     balance     {{ balance }}
     {% for host in groups['role_webserver'] %}
-        server {{ host }} {{ hostvars[host]['private_ip'] }}:{{ httpd_port }}
+        server {{ host }} {{ hostvars[host]['private_ip'] }}:{{ backend_port }}
     {% endfor %}
     
     
