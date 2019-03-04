@@ -1,15 +1,17 @@
 ---
-- name: Deploy an HA Proxy load balancer using a Galaxy Role
+- name: Deploy and configure a HA Proxy load balancer
   hosts: lbserver
   become: yes
   tasks:
-  - name: Download and install haproxy and socat
+  - name: Download and install haproxy
     yum:
-      name: "{{ item }}"
+      name: "haproxy"
       state: present
-    loop:
-    - haproxy
-    - socat
+
+  - name: Enable service haproxy, and not touch the state
+    service:
+      name: haproxy
+      enabled: yes
 
   - name: Configure firewall for access to website (80)
     firewalld:
