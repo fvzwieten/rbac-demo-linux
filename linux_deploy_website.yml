@@ -1,11 +1,11 @@
 ---
 - name: Create website on webserver
-  hosts: webservers:&linux
+  hosts: role_webserver:&linux
   become: yes
   vars_files:
     database_credentials.yml
   vars:
-    dbserver: "{{ groups['dbservers'][0] }}"
+    dbserver: "{{ groups['role_dbserver'][0] }}"
 
   tasks:
   - name: Install git
