@@ -7,6 +7,7 @@
 ---
 - name: Deploy ha proxy load balancer
   hosts: role_lbserver
-
+  become: yes
+  
   roles:
   - haproxy
