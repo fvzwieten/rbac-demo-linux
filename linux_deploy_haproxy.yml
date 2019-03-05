@@ -15,5 +15,4 @@
   tasks:
   - name: Report IP endpoint
     debug:
-      msg: "Load Balanced Website on-line at {{ public_ip }}"
-      msg: "Loadbalancer admin on-line at {{ public_ip }}:8080"
+      msg: "Load Balanced Website on-line at {{ public_ip }}\nLoadbalancer admin on-line at {{ public_ip }}:8080"
