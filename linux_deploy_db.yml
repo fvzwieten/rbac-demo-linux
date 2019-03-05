@@ -6,7 +6,7 @@
     database_credentials.yml
 
   tasks:
-  - name: Remove database is it already exists
+  - name: Remove database if it already exists
     mysql_db:
       name: "{{ dbname }}"
       state: absent
