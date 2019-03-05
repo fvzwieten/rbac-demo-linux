@@ -3,7 +3,7 @@
   hosts: role_dbserver:&linux
   become: yes
   vars_files:
-    database_credentials.yml
+    files/database_credentials.yml
     
   roles:
     - cockpit
