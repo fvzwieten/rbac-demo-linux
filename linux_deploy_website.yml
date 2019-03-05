@@ -3,7 +3,7 @@
   hosts: role_webserver:&linux
   become: yes
   vars_files:
-    database_credentials.yml
+    files/database_credentials.yml
   vars:
     dbserver: "{{ groups['role_dbserver'][0] }}"
 
@@ -21,7 +21,7 @@
 
   - name: Create website configuration file
     template:
-      src: config.php.j2
+      src: files/config.php.j2
       dest: /var/www/html/config.php
       
   - name: Report IP endpoint
