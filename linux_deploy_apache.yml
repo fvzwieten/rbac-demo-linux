@@ -3,6 +3,9 @@
 - name: linux_deploy_apache
   hosts: role_webserver:&linux
   become: yes
+  
+  roles:
+  - role: cockpit
 
   tasks:
   - name: Install apache and php
