@@ -1,9 +1,4 @@
 # Configure and deploy the load balancer(s).
-#- hosts: role_webserver
-#  name: Gather facts from webservers
-#  vars_files:
-#  - winrm_vars.yml
-#  tasks: [ ]
 ---
 - name: Deploy ha proxy load balancer
   hosts: role_lbserver
@@ -17,4 +12,3 @@
   - name: Report IP endpoint
     debug:
       msg: "Load Balanced Website on-line at {{ public_ip }}. Loadbalancer at :8080, Web console at :9090"
-      
