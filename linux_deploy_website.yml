@@ -23,3 +23,7 @@
     template:
       src: config.php.j2
       dest: /var/www/html/config.php
+      
+  - name: Report IP endpoint
+    debug:
+      msg: "Website on-line at {{ public_ip }}"
