@@ -5,7 +5,7 @@
   become: yes
   
   roles:
-  - role: cockpit
+  - cockpit
 
   tasks:
   - name: Install apache and php
@@ -36,3 +36,7 @@
       service: http
       state: enabled
       immediate: yes
+      
+  - name: report end-points
+    debug:
+      msg: "SSH at {{ public_ip }}. Web Console at :9090"
