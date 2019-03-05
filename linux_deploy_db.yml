@@ -4,29 +4,40 @@
   become: yes
   vars_files:
     database_credentials.yml
+    
+  roles:
+    - cockpit
 
   tasks:
   - name: Remove database if it already exists
     mysql_db:
       name: "{{ dbname }}"
       state: absent
+      
   - name: Create Database
     mysql_db:
       name: "{{ dbname }}"
       state: present
+      
   - name: Copy database schema file to DB server
     template:
       src: schema.sql.j2
       dest: /tmp/schema.sql
+      
   - name: Import schema file into database
     mysql_db:
       name: my_db
       state: import
       target: /tmp/schema.sql
+      
   - name: Create DB User
     mysql_user:
       name: "{{ dbuser }}"
       password: "{{ dbpassword }}"
       priv: "*.*:ALL"
       host: "%"
-      state: present      
+      state: present
+      
+  - name: Report end-points
+    debug:
+      msg: "SSH at {{ public_ip }}. Web console at :9090"
