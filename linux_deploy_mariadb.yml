@@ -3,6 +3,9 @@
 - name: linux_deploy_mariadb
   hosts: role_dbserver:&linux
   become: yes
+  
+  roles:
+  - cockpit
 
   tasks:
   - name: Install Mariadb Server
@@ -25,3 +28,7 @@
       service: mysql
       state: enabled
       immediate: yes
+      
+  - name: Report end-points
+    debug:
+      msg: "SSH at {{ public_ip }}. Web console at :9090
