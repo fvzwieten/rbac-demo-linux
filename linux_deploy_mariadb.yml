@@ -1,6 +1,5 @@
 ---
-# This playbook will install MariaDB (MySQL) 
-- name: linux_deploy_mariadb
+- name: This playbook will install MariaDB (MySQL) 
   hosts: role_dbserver:&linux
   become: yes
   
