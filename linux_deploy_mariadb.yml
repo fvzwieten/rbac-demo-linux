@@ -31,4 +31,4 @@
       
   - name: Report end-points
     debug:
-      msg: "SSH at {{ public_ip }}. Web console at :9090
+      msg: "SSH at {{ public_ip }}. Web console at :9090"
