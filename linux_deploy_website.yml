@@ -26,4 +26,4 @@
       
   - name: Report IP endpoint
     debug:
-      msg: "Website on-line at {{ public_ip }}"
+      msg: "SSH & Website at {{ public_ip }}. Web Console at :9090"
