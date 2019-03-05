@@ -17,7 +17,6 @@
     service: http
     state: enabled
     immediate: yes
-  tags: fw
 
 - name: Configure firewall for access to stats page
   firewalld:
@@ -25,7 +24,6 @@
     port: 8080/tcp
     state: enabled
     immediate: yes
-  tags: fw
 
 - name: Configure the haproxy cnf file with hosts
   template:
