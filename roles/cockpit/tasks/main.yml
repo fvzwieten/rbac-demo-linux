@@ -1,1 +1,27 @@
 ---
+---
+# This role installs Web Manager (Cockpit) and configures it.
+
+- name: Download and install cockpit
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+  - cockpit
+  - cockpit-shell
+  - cockpit-storaged
+  - cockpit-packagekit
+  - cockpit-dashboard
+
+- name: Configure firewall for access to cockpit
+  firewalld:
+    permanent: yes
+    service: cockpit
+    state: enabled
+    immediate: yes
+
+- name: Enable and start cockpit socket
+  service:
+    name: cockpit.socket
+    enabled: true
+    state: started
