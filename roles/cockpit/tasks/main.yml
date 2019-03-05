@@ -1,5 +1,4 @@
 ---
----
 # This role installs Web Manager (Cockpit) and configures it.
 
 - name: Download and install cockpit
