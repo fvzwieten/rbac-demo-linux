@@ -3,7 +3,7 @@
   hosts: role_webserver:&linux
   become: yes
   vars_files:
-    files/database_credentials.yml
+    files/database_credentials
   vars:
     dbserver: "{{ groups['role_dbserver'][0] }}"
 
