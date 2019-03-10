@@ -32,10 +32,8 @@
       name: ['krb5-workstation', 'samba-common-tools', 'sssd-ad', 'oddjob-mkhomedir']
       state: installed
 
-#  - include_role:
-#      name: geerlingguy.ntp
-#    tags:
-#      - time
+  - include_role:
+      name: geerlingguy.ntp
 
   - name: Disable dns server setting by NetworkManager (needed for Azure)
     ini_file:
