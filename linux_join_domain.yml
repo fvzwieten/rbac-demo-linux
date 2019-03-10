@@ -10,38 +10,41 @@
     files/join_domain_vars
   vars:
     dcserver: "{{ groups['role_dcserver'][0] }}"
+    fqdn: "{{ ansible_hostname }}.{{ domain }}"
 
   tasks:
   - name: set fqdn
     hostname:
-      name: "{{ ansible_hostname }}.{{ domain }}"
+      name: "{{ fqdn }}"
   - name: set timezone to Europe/Amsterdam
     timezone:
       name: Europe/Amsterdam
       hwclock: UTC
-    tags:
-      - time
+
+  - name: add fqdn entry to hosts file
+    lineinfile
+      path: /etc/hosts
+      regexp: "{{ fqdn }}"
+      line: "127.0.0.1 {{ fqdn }} {{ ansible_hostname }}"
 
   - name: Install AD related software
     yum:
       name: ['krb5-workstation', 'samba-common-tools', 'sssd-ad', 'oddjob-mkhomedir']
       state: installed
-    tags:
-      - packages
 
 #  - include_role:
 #      name: geerlingguy.ntp
 #    tags:
 #      - time
 
-  - name: Disable dns server setting by NetworkManager
+  - name: Disable dns server setting by NetworkManager (needed for Azure)
     ini_file:
-      path: /etc/NetworkManager/NetworkMAnager.conf
+      path: /etc/NetworkManager/NetworkManager.conf
       section: main
       option: dns
       value: none
 
-  - name: Overrule DNS server settings
+  - name: Overrule DNS server settings (needed for Azure)
     template:
       src: files/resolv.conf.j2
       dest: /etc/resolv.conf
