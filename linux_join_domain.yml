@@ -7,7 +7,7 @@
   become: yes
   hosts: linux
   vars_files:
-    - files/join_domain_vars
+    files/join_domain_vars
 
   tasks:
   - name: set timezone to Europe/Amsterdam
