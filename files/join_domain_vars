@@ -1,6 +1,6 @@
 ---
 domain: fredtest.local
-dc: 10.1.0.27
+dc: {{ hostvars[dcserver].private_ip }}
 lookup_realm: 'false'
 lookup_kdc: 'false'
 ad_user: somebody
