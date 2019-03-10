@@ -2,6 +2,10 @@
 # this playbook joins a RHEL server to a Windows AD domain
 # It depend on external (extra) vars to supply the domain name and the other
 # variables
+# inputs:
+# - domain: Domain part of the fqdn
+# - ad_user: Username of the user that is authorized to add a machine to ad
+# - ad_password: password of ad_user
 
 - name: join a server to a Domain
   become: yes
