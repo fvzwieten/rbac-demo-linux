@@ -29,20 +29,20 @@
 #    tags:
 #      - time
 
-- name: Disable dns server setting by NetworkManager
-  ini_file:
-    path: /etc/NetworkManager/NetworkMAnager.conf
-    section: main
-    option: dns
-    value: none
+  - name: Disable dns server setting by NetworkManager
+    ini_file:
+      path: /etc/NetworkManager/NetworkMAnager.conf
+      section: main
+      option: dns
+      value: none
 
-- name: Overrule DNS server settings
-  template:
-    src: files/resolv.conf.j2
-    dest: /etc/resolv.conf
-    owner: root
-    group: root
-    mode: 0644
+  - name: Overrule DNS server settings
+    template:
+      src: files/resolv.conf.j2
+      dest: /etc/resolv.conf
+      owner: root
+      group: root
+      mode: 0644
 
   - name: configure Kerberos
     template:
