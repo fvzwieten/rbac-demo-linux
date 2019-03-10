@@ -9,7 +9,7 @@
   vars_files:
     files/join_domain_vars
   vars:
-    dcserver: "{{ groups['role_dcserver'][0],private_ip }}"
+    dcserver: "{{ groups['role_dcserver'][0].private_ip }}"
     fqdn: "{{ ansible_hostname }}.{{ domain }}"
 
   tasks:
