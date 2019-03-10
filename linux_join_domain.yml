@@ -23,10 +23,10 @@
     tags:
       - packages
 
-  - include_role:
-      name: geerlingguy.ntp
-    tags:
-      - time
+#  - include_role:
+#      name: geerlingguy.ntp
+#    tags:
+#      - time
 
   - name: configure Kerberos
     template:
