@@ -22,7 +22,7 @@
       hwclock: UTC
 
   - name: add fqdn entry to hosts file
-    lineinfile
+    lineinfile:
       path: /etc/hosts
       regexp: "{{ fqdn }}"
       line: "127.0.0.1 {{ fqdn }} {{ ansible_hostname }}"
