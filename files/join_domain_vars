@@ -1,7 +1,7 @@
 ---
-domain: windows.lan
-dc: domaincontroller.windows.lan
+domain: fredtest.local
+dc: windcin
 lookup_realm: 'false'
 lookup_kdc: 'false'
 ad_user: Administrator
-ad_password: 'password'
+ad_password: 'r3dh4t1!'
