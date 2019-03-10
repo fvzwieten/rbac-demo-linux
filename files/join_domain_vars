@@ -1,6 +1,6 @@
 ---
 domain: fredtest.local
-dc: windcin
+dc: 10.1.0.27
 lookup_realm: 'false'
 lookup_kdc: 'false'
 ad_user: somebody
