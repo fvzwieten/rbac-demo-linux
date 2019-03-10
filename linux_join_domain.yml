@@ -12,6 +12,9 @@
     dcserver: "{{ groups['role_dcserver'][0] }}"
 
   tasks:
+  - name: set fqdn
+    hostname:
+      name: "{{ ansible_hostname }}.{{ domain }}"
   - name: set timezone to Europe/Amsterdam
     timezone:
       name: Europe/Amsterdam
