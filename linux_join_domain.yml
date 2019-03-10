@@ -136,6 +136,12 @@
       state: started
       enabled: yes
 
+  - name: start oddjobd
+    service:
+      name: oddjobd
+      state: started
+      enabled: yes
+
   - name: place sudoers file for domain admins
     copy:
       src: files/domain_admins_sudoers
