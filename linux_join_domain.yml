@@ -2,6 +2,7 @@
 # this playbook joins a RHEL server to a Windows AD domain
 # It depend on external (extra) vars to supply the domain name and the other
 # variables
+
 - name: join a server to a Domain
   become: yes
   hosts: linux
@@ -28,6 +29,21 @@
 #    tags:
 #      - time
 
+- name: Disable dns server setting by NetworkManager
+  ini_file:
+    path: /etc/NetworkManager/NetworkMAnager.conf
+    section: main
+    option: dns
+    value: none
+
+- name: Overrule DNS server settings
+  template:
+    src: files/resolv.conf.j2
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: 0644
+
   - name: configure Kerberos
     template:
       src: files/krb5.conf.j2
@@ -35,8 +51,6 @@
       owner: root
       group: root
       mode: 0644
-    tags:
-      - krb5
 
   - name: configure Samba
     template:
@@ -45,28 +59,20 @@
       owner: root
       group: root
       mode: 0644
-    tags:
-      - smb
 
   - name: get admin credentials
     shell: |
       echo {{ ad_password }} | kinit {{ ad_user }}
-    tags:
-      - krb5
 
   - name: join machine to domain
     shell: |
       net ads join -k
     args:
       creates: /etc/krb5.keytab
-    tags:
-      - krb5
 
   - name: remove admin credentials
     shell: |
       kdestroy
-    tags:
-      - krb5
 
   - name: place pam and authconfig configuration files, fingerprint-auth-ac
     copy:
@@ -75,8 +81,6 @@
       owner: root
       group: root
       mode: 0644
-    tags:
-      - pam
 
   - name: place pam and authconfig configuration files, password-auth-ac
     copy:
@@ -85,8 +89,6 @@
       owner: root
       group: root
       mode: 0644
-    tags:
-      - pam
 
   - name: place pam and authconfig configuration files, smartcard-auth-ac
     copy:
@@ -95,8 +97,6 @@
       owner: root
       group: root
       mode: 0644
-    tags:
-      - pam
 
   - name: place pam and authconfig configuration files, system-auth-ac
     copy:
@@ -105,8 +105,6 @@
       owner: root
       group: root
       mode: 0644
-    tags:
-      - pam
 
   - name: place pam and authconfig configuration files, authconfig
     copy:
@@ -115,8 +113,6 @@
       owner: root
       group: root
       mode: 0644
-    tags:
-      - pam
 
   - name: configure sssd
     template:
@@ -125,16 +121,12 @@
       owner: root
       group: root
       mode: 0600
-    tags:
-      - sssd
 
   - name: start sssd
     service:
       name: sssd
       state: started
       enabled: yes
-    tags:
-      - sssd
 
   - name: place sudoers file for domain admins
     copy:
@@ -143,5 +135,3 @@
       owner: root
       group: root
       mode: 0400
-    tags:
-      - sudo
