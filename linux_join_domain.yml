@@ -16,6 +16,7 @@
     dc: "{{ hostvars[dcserver].private_ip }}"
     lookup_realm: 'false'
     lookup_kdc: 'false'
+
   roles:
   - cockpit
 
