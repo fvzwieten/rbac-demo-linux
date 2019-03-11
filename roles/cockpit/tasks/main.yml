@@ -1,6 +1,8 @@
 ---
 # This role installs Web Manager (Cockpit) and configures it.
+# This is implemented as a role as a way to "Call" this from multiple playbooks.
 
+# example of installing multiple packages using one task
 - name: Download and install cockpit
   yum:
     name: "{{ item }}"
@@ -12,6 +14,7 @@
   - cockpit-packagekit
   - cockpit-dashboard
 
+# example of opening a named port in firewalld
 - name: Configure firewall for access to cockpit
   firewalld:
     permanent: yes
@@ -19,6 +22,7 @@
     state: enabled
     immediate: yes
 
+# example of enabling and starting a service/socket using one task
 - name: Enable and start cockpit socket
   service:
     name: cockpit.socket
