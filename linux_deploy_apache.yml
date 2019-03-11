@@ -1,9 +1,14 @@
 ---
 # This playbook will install Apache Web Server with php and mysql support
+# inputs: none
+
 - name: linux_deploy_apache
+
+  # example of having a logical and of two host groups. Only hosts that are linux webservers are selected here
   hosts: role_webserver:&linux
   become: yes
   
+  # example of calling a role. Roles are part of the repository in the roles directory
   roles:
   - cockpit
 
@@ -24,6 +29,7 @@
       name: httpd
       state: restarted
 
+  # example of setting a selinux boolean
   - name: Configure SELinux to allow httpd to connect to remote database
     seboolean:
       name: httpd_can_network_connect_db
