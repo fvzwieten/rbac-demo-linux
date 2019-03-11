@@ -11,6 +11,14 @@
     name: haproxy
     enabled: true
 
+# here a notifier is used. When the file actually changes, the handler called "restart haproxy" will be executed at the
+# end of this playbook.
+- name: Configure the haproxy cnf file with hosts
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify: restart haproxy
+
 - name: Configure firewall for access to website
   firewalld:
     permanent: yes
@@ -24,9 +32,3 @@
     port: 8080/tcp
     state: enabled
     immediate: yes
-
-- name: Configure the haproxy cnf file with hosts
-  template:
-    src: haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
-  notify: restart haproxy
