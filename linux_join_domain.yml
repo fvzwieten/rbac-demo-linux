@@ -15,7 +15,7 @@
   vars:
     dcserver: "{{ groups['role_dcserver'][0] }}"
     fqdn: "{{ ansible_hostname }}.{{ domain }}"
-    dc: {{ hostvars[dcserver].private_ip }}
+    dc: "{{ hostvars[dcserver].private_ip }}"
     lookup_realm: 'false'
     lookup_kdc: 'false'
 
