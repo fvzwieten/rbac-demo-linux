@@ -156,6 +156,6 @@
       group: root
       mode: 0400
       
-   - name: report on end point
-     debug:
-       msg: "You can now log in on {{ public_ip}} using either ssh (22) or cockpit (9090) with AD accounts"
+  - name: report on end point
+    debug:
+      msg: "You can now log in on {{ public_ip}} using either ssh (22) or cockpit (9090) with AD accounts"
