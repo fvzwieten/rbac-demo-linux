@@ -1,13 +1,8 @@
 ---
-# Handlers for HAproxy
+# Handlers for HAproxy. This will run at the end of a playbook when a notifier in a playbook is activated for this handler
 
 - name: restart haproxy
   service:
     name: haproxy
     state: restarted
     enabled: yes
-
-- name: reload haproxy
-  service:
-    name: haproxy
-    state: reloaded
