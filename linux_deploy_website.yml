@@ -13,12 +13,20 @@
       name: "git"
       state: present
 
+  # example code for detecting is a var is not defined and setting a default value (there are other ways using ie jinja2)
+  - name: Set default application if not defined
+    set_fact:
+      appname: "My Simple DB App"
+    when: appname is not defined
+
+  # example code for using the git module
   - name: check out website from git
     git:
       repo: https://github.com/fvzwieten/simple_db_app.git
       dest: /var/www/html/
       force: yes
 
+  # exsample for using templating
   - name: Create website configuration file
     template:
       src: files/config.php.j2
