@@ -21,7 +21,7 @@
       
   - name: Copy database schema file to DB server
     template:
-      src: schema.sql.j2
+      src: files/schema.sql.j2
       dest: /tmp/schema.sql
       
   - name: Import schema file into database
