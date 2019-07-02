@@ -1,8 +1,6 @@
 ---
 - name: ping the servers
   hosts: all
-  vars_files:
-    files/linux_vars
 
   tasks:
   - name: ping it
