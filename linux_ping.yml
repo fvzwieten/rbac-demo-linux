@@ -3,5 +3,10 @@
   hosts: all
 
   tasks:
+  # show username and password from machine credential
+  - name: Show machine credentials
+    debug:
+      msg: "Machine username = {{ ansible_user }}"
+      
   - name: ping it
     ping:
