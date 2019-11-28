@@ -1,6 +1,7 @@
 ---
 - name: ping the servers
   hosts: all
+  gather_facts: no
 
   tasks:
   # show username and password from machine credential
