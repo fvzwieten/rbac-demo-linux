@@ -1,7 +1,7 @@
 ---
 - name: test credentials
   hosts: blabla
-  connection: local
+  #connection: local
   gather_facts: no
   tasks:
   # show username and password from machine credential
