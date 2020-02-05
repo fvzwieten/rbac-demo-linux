@@ -3,10 +3,11 @@
   hosts: blabla
   gather_facts: no
   tasks:
-  set_stats:
-    data:
-      user: "{{ansible_username}}"
-      pwd: "{{ansible_password}}"
+  - name: cache machine credentials
+    set_stats:
+      data:
+        user: "{{ansible_username}}"
+        pwd: "{{ansible_password}}"
       
 - name: use machine credentials
   hosts: localhost
