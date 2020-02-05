@@ -1,5 +1,14 @@
 ---
-- name: ping the servers
+- name: all
+  hosts: all
+  gather_facts: no
+  tasks:
+  # show username and password from machine credential
+  - name: Show machine credentials
+    debug:
+      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
+  
+- name: localhost
   hosts: localhost
   gather_facts: no
 
@@ -9,5 +18,5 @@
     debug:
       msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
       
-  - name: ping it
-    ping:
+#  - name: ping it
+#    ping:
