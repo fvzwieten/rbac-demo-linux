@@ -5,18 +5,18 @@
   gather_facts: no
   tasks:
   # show username and password from machine credential
-  - name: (credtest) Show machine credentials
+  - name: credtest => Show machine credentials
     debug:
       msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
 
-  - name: (credtest) catch machine account
+  - name: credtest => catch machine account
     set_stats:
       data:
         machine_user = "{{ ansible_user }}"
         machine_password = "{{ ansible_password }}"
 
   # show username and password from machine credential
-  - name: Show catched machine credentials
+  - name: credtest => Show catched machine credentials
     debug:
       msg: "Machine username = {{ machine_user }} password = {{ machine_password }}"
       
@@ -26,12 +26,12 @@
 
   tasks:
   # show username and password from machine credential
-  - name: (localhost) Show machine credentials
+  - name: localhost => Show machine credentials
     debug:
       msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
 
   # show username and password from machine credential
-  - name: (localhost) Show catched machine credentials
+  - name: localhost => Show catched machine credentials
     debug:
       msg: "Machine username = {{ machine_user }} password = {{ machine_password }}"
       
