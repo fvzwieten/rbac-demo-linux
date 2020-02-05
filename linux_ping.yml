@@ -11,7 +11,7 @@
 
   - name: show stored machine credentials
     debug:
-      msg: "Username = {{ hostvars["dummy"].user }} Password = {{ hostvars["dummy"].password }}"
+      msg: "Username = {{ hostvars['dummy'].user }} Password = {{ hostvars['dummy'].password }}"
 
   - name: show actual machine credentials
     debug:
@@ -24,7 +24,7 @@
   tasks:
   - name: show stored machine credentials
     debug:
-      msg: "Username = {{ hostvars["dummy"].user }} Password = {{ hostvars["dummy"].password }}"
+      msg: "Username = {{ hostvars['dummy'].user }} Password = {{ hostvars['dummy'].password }}"
 
   - name: show stored machine credentials
     debug:
