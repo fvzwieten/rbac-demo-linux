@@ -3,12 +3,16 @@
   hosts: blabla
   gather_facts: no
   tasks:
-  - name: cache machine credentials
-    set_stats:
-      data:
-        user: "{{ansible_username}}"
-        pwd: "{{ansible_password}}"
+  - name: add dummy host
+    add_host:
+      name: "dummy"
+      foo: "42"
       
+  #- name: cache machine credentials
+  #  set_fact:
+  #    user: "{{ansible_username}}"
+  #    pwd: "{{ansible_password}}"
+
 - name: use machine credentials
   hosts: localhost
   connection: local
@@ -18,9 +22,10 @@
   # show username and password from machine credential
   - name: show machine credentials
     debug:
-      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
+#      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
+       var: hostvar[dummy]
 
-  - name: show cached machine credentials
-    debug:
-      msg: "Machine username = {{ user }} password = {{ pwd }}"
+#  - name: show cached machine credentials
+#    debug:
+#      msg: "Machine username = {{ user }} password = {{ pwd }}"
 
