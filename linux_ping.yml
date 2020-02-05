@@ -9,33 +9,24 @@
       user: "{{ansible_user}}"
       pwd: "{{ansible_password}}"
 
-  - name: show machine credentials
+  - name: show stored machine credentials
     debug:
-#      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
-       var: hostvars["dummy"].user
+      msg: "Username = {{ user }} Password = {{ password }}"
 
-  - name: show machine credentials
+  - name: show actual machine credentials
     debug:
-      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
-
-  #- name: cache machine credentials
-  #  set_fact:
-  #    user: "{{ansible_username}}"
-  #    pwd: "{{ansible_password}}"
+      msg: "Username = {{ ansible_user }} Password = {{ ansible_password }}"
 
 - name: use machine credentials
   hosts: localhost
   connection: local
   gather_facts: no
-
   tasks:
-  # show username and password from machine credential
-  - name: show machine credentials
+  - name: show stored machine credentials
     debug:
-#      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
-       var: hostvars["dummy"].user
+      msg: "Username = {{ user }} Password = {{ password }}"
 
-#  - name: show cached machine credentials
-#    debug:
-#      msg: "Machine username = {{ user }} password = {{ pwd }}"
-
+  - name: show stored machine credentials
+    debug:
+      msg: "Username = {{ ansible_user }} Password = {{ ansible_password }}"
+      
