@@ -9,9 +9,9 @@
         user: "{{ansible_user}}"
         pwd: "{{ansible_password}}"
 
-  - name: showw stored machine credentials
-    debug:
-      msg: "Username = {{ user }} Password = {{ pwd }}"
+#  - name: showw stored machine credentials
+#    debug:
+#      msg: "Username = {{ user }} Password = {{ pwd }}"
 
   - name: show actual machine credentials
     debug:
