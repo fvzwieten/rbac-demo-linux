@@ -8,11 +8,11 @@
       data:
         user: "{{ansible_user}}"
         pwd: "{{ansible_password}}"
-      per_host: no
 
-#  - name: showw stored machine credentials
-#    debug:
+  - name: showw stored machine credentials
+    debug:
 #      msg: "Username = {{ user }} Password = {{ pwd }}"
+      var: user
 
   - name: show actual machine credentials
     debug:
