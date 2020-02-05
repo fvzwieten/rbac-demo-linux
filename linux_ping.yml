@@ -6,12 +6,17 @@
   - name: add dummy host
     add_host:
       name: "dummy"
-      foo: "42"
+      user: "{{ansible_user}}"
+      pwd: "{{ansible_password}}"
 
   - name: show machine credentials
     debug:
 #      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
-       var: hostvars["dummy"].ansible_username
+       var: hostvars["dummy"].user
+
+  - name: show machine credentials
+    debug:
+      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
 
   #- name: cache machine credentials
   #  set_fact:
@@ -28,7 +33,7 @@
   - name: show machine credentials
     debug:
 #      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
-       var: hostvars["dummy"].ansible_username
+       var: hostvars["dummy"].user
 
 #  - name: show cached machine credentials
 #    debug:
