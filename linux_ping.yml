@@ -1,6 +1,7 @@
 ---
 - name: test credentials
   hosts: credtest
+  connection: local
   gather_facts: no
   tasks:
   # show username and password from machine credential
