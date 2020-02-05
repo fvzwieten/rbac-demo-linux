@@ -1,6 +1,6 @@
 ---
 - name: test credentials
-  hosts: 
+  hosts: blabla
   connection: local
   gather_facts: no
   tasks:
