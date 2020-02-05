@@ -10,9 +10,10 @@
       msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
 
   - name: (credtest) catch machine account
-    set_fact:
-      machine_user = "{{ ansible_user }}"
-      machine_password = "{{ ansible_password }}"
+    set_stats:
+      data:
+        machine_user = "{{ ansible_user }}"
+        machine_password = "{{ ansible_password }}"
 
   # show username and password from machine credential
   - name: Show catched machine credentials
