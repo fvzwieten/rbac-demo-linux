@@ -4,14 +4,14 @@
   gather_facts: no
   tasks:
   - name: add dummy host
-    add_host:
-      name: "dummy"
-      user: "{{ansible_user}}"
-      pwd: "{{ansible_password}}"
+    set_stat:
+      data:
+        user: "{{ansible_user}}"
+        pwd: "{{ansible_password}}"
 
   - name: show stored machine credentials
     debug:
-      msg: "Username = {{ hostvars['dummy'].user }} Password = {{ hostvars['dummy'].pwd }}"
+      msg: "Username = {{ user }} Password = {{ pwd }}"
 
   - name: show actual machine credentials
     debug:
@@ -24,9 +24,37 @@
   tasks:
   - name: show stored machine credentials
     debug:
-      msg: "Username = {{ hostvars['dummy'].user }} Password = {{ hostvars['dummy'].pwd }}"
+      msg: "Username = {{ user }} Password = {{ pwd }}"
 
   - name: show stored machine credentials
     debug:
       msg: "Username = {{ ansible_user }} Password = {{ ansible_password }}"
-      
+
+
+#  - name: add dummy host
+#    add_host:
+#      name: "dummy"
+#      user: "{{ansible_user}}"
+#      pwd: "{{ansible_password}}"
+#
+#  - name: show stored machine credentials
+#    debug:
+#      msg: "Username = {{ hostvars['dummy'].user }} Password = {{ hostvars['dummy'].pwd }}"
+#
+#  - name: show actual machine credentials
+#    debug:
+#      msg: "Username = {{ ansible_user }} Password = {{ ansible_password }}"
+#
+#- name: use machine credentials
+#  hosts: localhost
+#  connection: local
+#  gather_facts: no
+#  tasks:
+#  - name: show stored machine credentials
+#    debug:
+#      msg: "Username = {{ hostvars['dummy'].user }} Password = {{ hostvars['dummy'].pwd }}"
+#
+#  - name: show stored machine credentials
+#    debug:
+#      msg: "Username = {{ ansible_user }} Password = {{ ansible_password }}"
+
