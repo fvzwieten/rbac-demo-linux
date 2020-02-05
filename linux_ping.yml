@@ -1,39 +1,16 @@
 ---
-- name: test credentials
+- name: get machine credentials
   hosts: blabla
-  #connection: local
   gather_facts: no
   tasks:
-  # show username and password from machine credential
-  #- name: credtest => Show machine credentials
-  #  debug:
-  #    msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
-
-  #- name: credtest => catch machine account
-  #  set_stats:
-  #    data:
-  #      machine_user = "{{ ansible_user }}"
-  #      machine_password = "{{ ansible_password }}"
-
-  # show username and password from machine credential
-  #- name: credtest => Show catched machine credentials
-  #  debug:
-  #    msg: "Machine username = {{ machine_user }} password = {{ machine_password }}"
       
-- name: localhost
+- name: use machine credentials
   hosts: localhost
   gather_facts: no
 
   tasks:
   # show username and password from machine credential
-  - name: localhost => Show machine credentials
+  - name: show machine credentials
     debug:
       msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
 
-  # show username and password from machine credential
-  #- name: localhost => Show catched machine credentials
-  #  debug:
-  #    msg: "Machine username = {{ machine_user }} password = {{ machine_password }}"
-      
-#  - name: ping it
-#    ping:
