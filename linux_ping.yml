@@ -8,6 +8,7 @@
       data:
         user: "{{ansible_user}}"
         pwd: "{{ansible_password}}"
+      per_host: no
 
 #  - name: showw stored machine credentials
 #    debug:
