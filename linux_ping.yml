@@ -1,6 +1,6 @@
 ---
 - name: get machine credentials
-  hosts: blabla
+  hosts: localhost
   gather_facts: no
   tasks:
   - name: add dummy host
