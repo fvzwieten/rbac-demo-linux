@@ -7,7 +7,7 @@
   # show username and password from machine credential
   - name: Show machine credentials
     debug:
-      msg: "Machine username = {{ ansible_user }}"
+      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
       
   - name: ping it
     ping:
