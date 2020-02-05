@@ -1,4 +1,8 @@
 ---
+- name: use machine credentials
+  hosts: localhost
+  gather_facts: no
+  tasks:
   - name: add dummy host
     add_host:
       name: "dummy"
