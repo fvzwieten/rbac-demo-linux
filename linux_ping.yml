@@ -1,6 +1,6 @@
 ---
 - name: test credentials
-  hosts: credtest
+  hosts: 
   connection: local
   gather_facts: no
   tasks:
