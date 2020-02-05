@@ -1,6 +1,6 @@
 ---
-- name: all
-  hosts: all
+- name: test credentials
+  hosts: 1.1.1.1
   gather_facts: no
   tasks:
   # show username and password from machine credential
