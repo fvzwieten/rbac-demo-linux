@@ -1,6 +1,6 @@
 ---
 - name: test credentials
-  hosts: "1.1.1.1"
+  hosts: credtest
   gather_facts: no
   tasks:
   # show username and password from machine credential
