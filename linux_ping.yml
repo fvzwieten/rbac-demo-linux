@@ -11,7 +11,7 @@
   - name: show machine credentials
     debug:
 #      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
-       var: hostvar["dummy"]
+       var: hostvars["dummy"]
 
   #- name: cache machine credentials
   #  set_fact:
@@ -28,7 +28,7 @@
   - name: show machine credentials
     debug:
 #      msg: "Machine username = {{ ansible_user }} password = {{ ansible_password }}"
-       var: hostvar["dummy"]
+       var: hostvars["dummy"]
 
 #  - name: show cached machine credentials
 #    debug:
