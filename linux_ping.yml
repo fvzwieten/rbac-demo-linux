@@ -21,8 +21,6 @@
   hosts: localhost
   connection: local
   gather_facts: no
-  vars:
-    test: "bla"
   tasks:
   - name: show stored machine credentials
     debug:
@@ -31,6 +29,10 @@
   - name: show stored machine credentials
     debug:
       msg: "Username = {{ ansible_user }} Password = {{ ansible_password }}"
+
+  - name: store test
+    set_stats:
+      test: "bla"
 
 - name: use machine credentials
   hosts: localhost
