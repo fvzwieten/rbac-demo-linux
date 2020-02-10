@@ -30,15 +30,17 @@
     debug:
       msg: "Username = {{ ansible_user }} Password = {{ ansible_password }}"
 
-  - name: store test
-    set_stats:
-      data:
-        test: "bla"
+  - name: add instance to inventory
+    add_host:
+      name: "dummy2"
+      groups: "just_created"
+      user: "Administrator"
+      pwd: "{{ansible_password}}"
 
 - name: use machine credentials
-  hosts: localhost
+  hosts: just_created
   gather_facts: no
   tasks:
-  - name: show test var
+  - name: show user
     debug:
-      var: test
+      var: user
