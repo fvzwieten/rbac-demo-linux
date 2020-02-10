@@ -32,7 +32,8 @@
 
   - name: store test
     set_stats:
-      test: "bla"
+      data:
+        test: "bla"
 
 - name: use machine credentials
   hosts: localhost
