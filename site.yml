@@ -1,0 +1,11 @@
+---
+- name: motd test
+  hosts: all
+  become: yes
+  vars:
+    message_1: "Hello World"
+    message_2: "bla"
+    width: 30
+
+  roles:
+  - exam.motd.mymotd
